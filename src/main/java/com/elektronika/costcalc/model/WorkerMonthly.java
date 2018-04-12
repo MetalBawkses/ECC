@@ -9,7 +9,7 @@ public class WorkerMonthly {
     private long id;
 
     @ManyToOne
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Worker workerId;
 
     @Column(nullable = false)
@@ -27,12 +27,12 @@ public class WorkerMonthly {
     public WorkerMonthly() {
     }
 
-    public WorkerMonthly(Worker workerId, Float socialContribution, Float vocationalTrainingContribution, Integer yearMonth) {
-        this.workerId = workerId;
-        this.socialContribution = socialContribution;
-        this.vocationalTrainingContribution = vocationalTrainingContribution;
-        this.yearMonth = yearMonth;
-    }
+//    public WorkerMonthly(Worker workerId, Float socialContribution, Float vocationalTrainingContribution, Integer yearMonth) {
+//        this.workerId = workerId;
+//        this.socialContribution = socialContribution;
+//        this.vocationalTrainingContribution = vocationalTrainingContribution;
+//        this.yearMonth = yearMonth;
+//    }
 
     public Worker getWorkerId() {
         return workerId;

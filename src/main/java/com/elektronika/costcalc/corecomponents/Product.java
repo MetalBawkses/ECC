@@ -10,7 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "PRODUCT")
 public class Product {
+
+    public Product(){}
+
+    public Product(int id, String name){
+        this.name = name;
+        this.id = id;
+    }
 
     @Id
     private Integer id;
@@ -40,25 +48,25 @@ public class Product {
         return workCosts;
     }
 
-    public void setWorkCosts(List<WorkCost> workCosts) {
-        this.workCosts = workCosts;
-    }
+//    public void setWorkCosts(List<WorkCost> workCosts) {
+//        this.workCosts = workCosts;
+//    }
 
     public List<MaterialCost> getMaterialCosts() {
         return materialCosts;
     }
 
-    public void setMaterialCosts(List<MaterialCost> materialCosts) {
-        this.materialCosts = materialCosts;
-    }
+//    public void setMaterialCosts(List<MaterialCost> materialCosts) {
+//        this.materialCosts = materialCosts;
+//    }
 
     public List<LeaseWorkCost> getLeaseWorkCosts() {
         return leaseWorkCosts;
     }
 
-    public void setLeaseWorkCosts(List<LeaseWorkCost> leaseWorkCosts) {
-        this.leaseWorkCosts = leaseWorkCosts;
-    }
+//    public void setLeaseWorkCosts(List<LeaseWorkCost> leaseWorkCosts) {
+//        this.leaseWorkCosts = leaseWorkCosts;
+//    }
 
     public Integer getId() {
         return id;

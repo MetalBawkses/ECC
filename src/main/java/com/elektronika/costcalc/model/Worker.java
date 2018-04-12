@@ -27,7 +27,11 @@ public class Worker {
     @OneToMany(mappedBy = "workerId",
                 cascade = CascadeType.ALL,
                 orphanRemoval = true)
-    private List<WorkerMonthly> workerMonthlies = new ArrayList<>();
+    private List<WorkerMonthly> workerMonthlies;
+
+    {
+        workerMonthlies = new ArrayList<>();
+    }
 
     public Worker() {
     }
