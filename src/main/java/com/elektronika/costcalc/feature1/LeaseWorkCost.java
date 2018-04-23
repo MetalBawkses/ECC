@@ -16,10 +16,11 @@ public class LeaseWorkCost {
     private Product productId;
 
     @Column(nullable = false)
-    private Integer cost;
+    private Float cost;
 
     @Column(nullable = false)
-    private Integer billNumber;
+    private String billNumber;
+
     @Column(nullable = false)
     private Integer yearMonth;
 
@@ -27,7 +28,7 @@ public class LeaseWorkCost {
 
     }
 
-    public LeaseWorkCost(Product productId, Integer cost, Integer billNumber, Integer yearMonth) {
+    public LeaseWorkCost(Product productId, Float cost, String billNumber, Integer yearMonth) {
         this.productId = productId;
         this.cost = cost;
         this.billNumber = billNumber;
@@ -50,19 +51,19 @@ public class LeaseWorkCost {
         this.productId = productId;
     }
 
-    public Integer getCost() {
+    public Float getCost() {
         return cost;
     }
 
-    public void setCost(Integer workCost) {
+    public void setCost(Float workCost) {
         this.cost = workCost;
     }
 
-    public Integer getBillNumber() {
+    public String getBillNumber() {
         return billNumber;
     }
 
-    public void setBillNumber(Integer billNumber) {
+    public void setBillNumber(String billNumber) {
         this.billNumber = billNumber;
     }
 

@@ -12,15 +12,15 @@ public class MaterialCost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-/*    @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product productId;*/
+    private Product productId;
 
     @Column(nullable = false)
     private Float cost;
 
-/*    @Column(nullable = false)
-    private Integer selfProducedMaterialCost;*/
+    @Column(nullable = false)
+    private Integer selfProducedMaterialCost;
 
     @Column(nullable = false)
     private Integer yearMonth;
@@ -28,9 +28,9 @@ public class MaterialCost {
     public MaterialCost() {
     }
 
-    public MaterialCost(Float cost, /*Integer selfProducedMaterialCost,*/ Integer yearMonth) {
+    public MaterialCost(Product productId, Float cost, Integer selfProducedMaterialCost, Integer yearMonth) {
         this.cost = cost;
-        /*this.selfProducedMaterialCost = selfProducedMaterialCost;*/
+        this.selfProducedMaterialCost = selfProducedMaterialCost;
         this.yearMonth = yearMonth;
     }
 
@@ -42,13 +42,13 @@ public class MaterialCost {
         this.cost = cost;
     }
 
-/*    public Integer getSelfProducedMaterialCost() {
+    public Integer getSelfProducedMaterialCost() {
         return selfProducedMaterialCost;
     }
 
     public void setSelfProducedMaterialCost(Integer selfProducedMaterialCost) {
         this.selfProducedMaterialCost = selfProducedMaterialCost;
-    }*/
+    }
 
     public Integer getYearMonth() {
         return yearMonth;

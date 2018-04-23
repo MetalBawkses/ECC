@@ -16,8 +16,8 @@ public class CoreCostCalcController {
     @GetMapping("/")
     public String index(Model model){
         List<MaterialCost> result = materialCostRepository.findAllByYearMonthEquals(201801);
+
         model.addAttribute("costList", result);
-//        model.addAttribute("message", "helllloooooo");
         return "index";
     }
 

@@ -20,7 +20,6 @@ public class WorkCost {
     private Integer hoursOfWork;
 
     @ManyToOne
-//    @Column(nullable = false)
     private Worker workerId;
 
     @Column(nullable = false)

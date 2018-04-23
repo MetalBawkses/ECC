@@ -15,10 +15,13 @@ public class Product {
 
     public Product(){}
 
-    public Product(int id, String name){
+    public Product(int id, String name, int amount){
         this.name = name;
         this.id = id;
+        this.amount = amount;
     }
+
+
 
     @Id
     private Integer id;
@@ -29,19 +32,13 @@ public class Product {
     @Column(nullable = false)
     private Integer amount;
 
-    @OneToMany(mappedBy = "productId"
-            /*cascade = CascadeType.ALL,
-            orphanRemoval = true*/)
+    @OneToMany(mappedBy = "productId")
     private List<LeaseWorkCost> leaseWorkCosts = new ArrayList<>();
 
-/*    @OneToMany(mappedBy = "productId",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<MaterialCost> materialCosts = new ArrayList<>();*/
+    @OneToMany(mappedBy = "productId")
+    private List<MaterialCost> materialCosts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "productId"
-            /*cascade = CascadeType.ALL,
-            orphanRemoval = true*/)
+    @OneToMany(mappedBy = "productId")
     private List<WorkCost> workCosts = new ArrayList<>();
 
     public Integer getId() {

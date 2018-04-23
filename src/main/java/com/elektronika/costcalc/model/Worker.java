@@ -20,13 +20,13 @@ public class Worker {
 
 
     @OneToMany(mappedBy = "workerId",
-                cascade = CascadeType.ALL,
-                orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<WorkCost> workCosts = new ArrayList<>();
 
     @OneToMany(mappedBy = "workerId",
-                cascade = CascadeType.ALL,
-                orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<WorkerMonthly> workerMonthlies;
 
     {
@@ -36,11 +36,10 @@ public class Worker {
     public Worker() {
     }
 
-    public Worker(String name, String division, Integer hourlyRate, List<WorkCost> workCosts, List<WorkerMonthly> workerMonthlies) {
+    public Worker(String name, String division) {
         this.name = name;
         this.division = division;
-        this.workCosts = workCosts;
-        this.workerMonthlies = workerMonthlies;
+
     }
 
     public String getName() {
