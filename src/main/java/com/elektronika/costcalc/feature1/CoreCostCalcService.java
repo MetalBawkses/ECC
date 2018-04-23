@@ -11,6 +11,14 @@ public class CoreCostCalcService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private MaterialCostRepository materialCostRepository;
+
+
+    public void placeholder(){
+        materialCostRepository.findAllByYearMonthEquals(201801);
+    }
+
 
 
 }

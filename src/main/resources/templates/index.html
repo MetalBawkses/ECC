@@ -1,1 +1,16 @@
-LÓFASZ2
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Test</title>
+</head>
+<body>
+
+<table th:object="${costList}" id="userTable" border="1">
+    <tr th:each="cost :${costList}">
+        <td  th:text="${cost.getCost()}"></td>
+        <td  th:text="${cost.getYearMonth()}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
