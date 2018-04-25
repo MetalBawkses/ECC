@@ -19,12 +19,12 @@ public class Worker {
     private String division;
 
 
-    @OneToMany(mappedBy = "workerId",
+    @OneToMany(mappedBy = "worker",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<WorkCost> workCosts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "workerId",
+    @OneToMany(mappedBy = "worker",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<WorkerMonthly> workerMonthlies;

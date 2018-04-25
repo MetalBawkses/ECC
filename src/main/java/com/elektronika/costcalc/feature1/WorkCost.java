@@ -12,16 +12,16 @@ public class WorkCost extends Cost{
     private Float hoursOfWork;
 
     @ManyToOne
-    private Worker workerId;
+    private Worker worker;
 
 
     public WorkCost() {
     }
 
-    public WorkCost(Product productId, Float cost, Integer yearMonth, Float hoursOfWork, Worker workerId){
-        super(productId, cost, yearMonth);
+    public WorkCost(Product productId, Float cost, Integer yearMonth, Float hoursOfWork, Worker worker, boolean directCost){
+        super(productId, cost, yearMonth, directCost);
         this.hoursOfWork = hoursOfWork;
-        this.workerId = workerId;
+        this.worker = worker;
     }
 
 
@@ -33,12 +33,12 @@ public class WorkCost extends Cost{
         this.hoursOfWork = hoursOfWork;
     }
 
-    public Worker getWorkerId() {
-        return workerId;
+    public Worker getWorker() {
+        return worker;
     }
 
-    public void setWorkerId(Worker workerId) {
-        this.workerId = workerId;
+    public void setWorker(Worker workerId) {
+        this.worker = workerId;
     }
 
 }

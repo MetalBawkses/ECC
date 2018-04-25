@@ -18,7 +18,7 @@ public class Cost {
 
     @ManyToOne
 //    @JoinColumn(name = "id")
-    private Product productId;
+    private Product product;
 
     @Column(nullable = false)
     private Float cost;
@@ -26,10 +26,14 @@ public class Cost {
     @Column(nullable = false)
     private Integer yearMonth;
 
-    public Cost(Product productId, Float cost, Integer yearMonth) {
-        this.productId = productId;
+    @Column(nullable = false)
+    private boolean directCost;
+
+    public Cost(Product product, Float cost, Integer yearMonth, boolean directCost) {
+        this.product = product;
         this.cost = cost;
         this.yearMonth = yearMonth;
+        this.directCost = directCost;
     }
 
     public Cost() {
@@ -56,11 +60,11 @@ public class Cost {
         this.yearMonth = yearMonth;
     }
 
-    public Product getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
+    public void setProduct(Product productId) {
+        this.product = productId;
     }
 }

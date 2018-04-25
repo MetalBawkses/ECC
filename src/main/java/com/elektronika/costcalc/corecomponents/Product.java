@@ -2,9 +2,6 @@ package com.elektronika.costcalc.corecomponents;
 
 
 import com.elektronika.costcalc.feature1.Cost;
-import com.elektronika.costcalc.feature1.WorkCost;
-import com.elektronika.costcalc.feature1.LeaseWorkCost;
-import com.elektronika.costcalc.feature1.MaterialCost;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,7 +28,7 @@ public class Product {
     @Column(nullable = false)
     private Integer amount;
 
-    @OneToMany(mappedBy = "productId")
+    @OneToMany(mappedBy = "product")
     private List<Cost> costs = new ArrayList<>();
 
 

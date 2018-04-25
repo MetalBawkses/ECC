@@ -12,8 +12,8 @@ public class MaterialCost extends Cost {
 
     private Float selfProducedMaterialCost;
 
-    public MaterialCost(Product productId, Float cost, Integer yearMonth, Float selfProducedMaterialCost) {
-        super(productId, cost, yearMonth);
+    public MaterialCost(Product productId, Float cost, Integer yearMonth, Float selfProducedMaterialCost, boolean directCost) {
+        super(productId, cost, yearMonth, directCost);
         this.selfProducedMaterialCost = selfProducedMaterialCost;
     }
 

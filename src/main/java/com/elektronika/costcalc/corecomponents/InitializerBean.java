@@ -23,12 +23,6 @@ public class InitializerBean {
     @Autowired
     WorkerMonthlyRepository workerMonthlyRepository;
 
-    @Autowired
-    MaterialCostRepository materialCostRepository;
-
-    @Autowired
-    LeaseWorkCostRepository leaseWorkCostRepository;
-
     @PostConstruct
     public void init(){
         Product product1 = new Product(123456, "prodName", 200);
@@ -54,14 +48,14 @@ public class InitializerBean {
         workerMonthlyRepository.save(wm3);
         workerMonthlyRepository.save(wm4);
 
-        WorkCost wc1 = new WorkCost(product1, 123f, 201801, 77f, worker1);
-        WorkCost wc2 = new WorkCost(product1, 123f, 201801, 77f, worker1);
-        WorkCost wc3 = new WorkCost(product1, 123f, 201801, 77f, worker2);
-        WorkCost wc4 = new WorkCost(product1, 123f, 201801, 77f, worker2);
-        WorkCost wc5 = new WorkCost(product1, 123f, 201801, 77f, worker3);
-        WorkCost wc6 = new WorkCost(product1, 123f, 201801, 77f, worker3);
-        WorkCost wc7 = new WorkCost(product1, 123f, 201801, 77f, worker4);
-        WorkCost wc8 = new WorkCost(product1, 123f, 201801, 77f, worker4);
+        WorkCost wc1 = new WorkCost(product1, 123f, 201801, 77f, worker1, true);
+        WorkCost wc2 = new WorkCost(product1, 123f, 201801, 77f, worker1, true);
+        WorkCost wc3 = new WorkCost(product1, 123f, 201801, 77f, worker2, true);
+        WorkCost wc4 = new WorkCost(product1, 123f, 201801, 77f, worker2, true);
+        WorkCost wc5 = new WorkCost(product1, 123f, 201801, 77f, worker3, true);
+        WorkCost wc6 = new WorkCost(product1, 123f, 201801, 77f, worker3, true);
+        WorkCost wc7 = new WorkCost(product1, 123f, 201801, 77f, worker4, true);
+        WorkCost wc8 = new WorkCost(product1, 123f, 201801, 77f, worker4, true);
 
 
         costRepository.save(wc1);
@@ -74,43 +68,43 @@ public class InitializerBean {
         costRepository.save(wc8);
 
 
-        LeaseWorkCost l1 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l2 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l3 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l4 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l5 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l6 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l7 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
-        LeaseWorkCost l8 = new LeaseWorkCost(product1, 31f, 201801,"K1234");
+        LeaseWorkCost l1 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l2 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l3 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l4 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l5 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l6 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l7 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l8 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
 
 
-        leaseWorkCostRepository.save(l1);
-        leaseWorkCostRepository.save(l2);
-        leaseWorkCostRepository.save(l3);
-        leaseWorkCostRepository.save(l4);
-        leaseWorkCostRepository.save(l5);
-        leaseWorkCostRepository.save(l6);
-        leaseWorkCostRepository.save(l7);
-        leaseWorkCostRepository.save(l8);
+        costRepository.save(l1);
+        costRepository.save(l2);
+        costRepository.save(l3);
+        costRepository.save(l4);
+        costRepository.save(l5);
+        costRepository.save(l6);
+        costRepository.save(l7);
+        costRepository.save(l8);
 
-        MaterialCost m1 = new MaterialCost(product1,21f, 201801,0f );
-        MaterialCost m2 = new MaterialCost(product1,22f, 201801,0f );
-        MaterialCost m3 = new MaterialCost(product1,23f, 201803,0f );
-        MaterialCost m4 = new MaterialCost(product1,24f, 201801,0f );
-        MaterialCost m5 = new MaterialCost(product1,25f, 201804,0f );
-        MaterialCost m6 = new MaterialCost(product1,26f, 201807,0f );
-        MaterialCost m7 = new MaterialCost(product1,28f, 201801,0f );
-        MaterialCost m8 = new MaterialCost(product1,29f, 201803,0f );
+        MaterialCost m1 = new MaterialCost(product1,21f, 201801,0f , true);
+        MaterialCost m2 = new MaterialCost(product1,22f, 201801,0f , true);
+        MaterialCost m3 = new MaterialCost(product1,23f, 201803,0f , true);
+        MaterialCost m4 = new MaterialCost(product1,24f, 201801,0f , true);
+        MaterialCost m5 = new MaterialCost(product1,25f, 201804,0f , true);
+        MaterialCost m6 = new MaterialCost(product1,26f, 201807,0f , true);
+        MaterialCost m7 = new MaterialCost(product1,28f, 201801,0f , true);
+        MaterialCost m8 = new MaterialCost(product1,29f, 201803,0f , true);
 
 
-        materialCostRepository.save(m1);
-        materialCostRepository.save(m2);
-        materialCostRepository.save(m3);
-        materialCostRepository.save(m4);
-        materialCostRepository.save(m5);
-        materialCostRepository.save(m6);
-        materialCostRepository.save(m7);
-        materialCostRepository.save(m8);
+        costRepository.save(m1);
+        costRepository.save(m2);
+        costRepository.save(m3);
+        costRepository.save(m4);
+        costRepository.save(m5);
+        costRepository.save(m6);
+        costRepository.save(m7);
+        costRepository.save(m8);
 
         List<Cost> lista = costRepository.findAllCost(201801);
         System.out.println(lista.toString());

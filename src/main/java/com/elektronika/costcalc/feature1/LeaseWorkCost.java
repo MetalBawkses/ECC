@@ -10,8 +10,8 @@ public class LeaseWorkCost extends Cost{
 
     private String billNumber;
 
-    public LeaseWorkCost(Product productId, Float cost, Integer yearMonth, String billNumber){
-        super(productId, cost, yearMonth);
+    public LeaseWorkCost(Product productId, Float cost, Integer yearMonth, String billNumber, boolean directCost){
+        super(productId, cost, yearMonth, directCost);
         this.billNumber = billNumber;
     }
 
