@@ -6,48 +6,30 @@ import com.elektronika.costcalc.model.Worker;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "work_cost")
-public class WorkCost {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@DiscriminatorValue("workCost")
+public class WorkCost extends Cost{
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product productId;
-
-    @Column(nullable = false)
-    private Integer hoursOfWork;
+    private Float hoursOfWork;
 
     @ManyToOne
     private Worker workerId;
 
-    @Column(nullable = false)
-    private Integer yearMonth;
 
     public WorkCost() {
     }
 
-    public WorkCost(Product productId, Integer hoursOfWork, Worker workerId, Integer yearMonth) {
-        this.productId = productId;
+    public WorkCost(Product productId, Float cost, Integer yearMonth, Float hoursOfWork, Worker workerId){
+        super(productId, cost, yearMonth);
         this.hoursOfWork = hoursOfWork;
         this.workerId = workerId;
-        this.yearMonth = yearMonth;
     }
 
-    public Product getProductId() {
-        return productId;
-    }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
-    }
-
-    public Integer getHoursOfWork() {
+    public Float getHoursOfWork() {
         return hoursOfWork;
     }
 
-    public void setHoursOfWork(Integer hoursOfWork) {
+    public void setHoursOfWork(Float hoursOfWork) {
         this.hoursOfWork = hoursOfWork;
     }
 
@@ -59,11 +41,4 @@ public class WorkCost {
         this.workerId = workerId;
     }
 
-    public Integer getYearMonth() {
-        return yearMonth;
-    }
-
-    public void setYearMonth(Integer yearMonth) {
-        this.yearMonth = yearMonth;
-    }
 }

@@ -1,6 +1,7 @@
 package com.elektronika.costcalc.corecomponents;
 
 
+import com.elektronika.costcalc.feature1.Cost;
 import com.elektronika.costcalc.feature1.WorkCost;
 import com.elektronika.costcalc.feature1.LeaseWorkCost;
 import com.elektronika.costcalc.feature1.MaterialCost;
@@ -21,8 +22,6 @@ public class Product {
         this.amount = amount;
     }
 
-
-
     @Id
     private Integer id;
 
@@ -33,13 +32,9 @@ public class Product {
     private Integer amount;
 
     @OneToMany(mappedBy = "productId")
-    private List<LeaseWorkCost> leaseWorkCosts = new ArrayList<>();
+    private List<Cost> costs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "productId")
-    private List<MaterialCost> materialCosts = new ArrayList<>();
 
-    @OneToMany(mappedBy = "productId")
-    private List<WorkCost> workCosts = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -65,19 +60,8 @@ public class Product {
         this.amount = amount;
     }
 
-    public List<LeaseWorkCost> getLeaseWorkCosts() {
-        return leaseWorkCosts;
+    public List<Cost> getCosts() {
+        return costs;
     }
 
-    public void setLeaseWorkCosts(List<LeaseWorkCost> leaseWorkCosts) {
-        this.leaseWorkCosts = leaseWorkCosts;
-    }
-
-    public List<WorkCost> getWorkCosts() {
-        return workCosts;
-    }
-
-    public void setWorkCosts(List<WorkCost> workCosts) {
-        this.workCosts = workCosts;
-    }
 }

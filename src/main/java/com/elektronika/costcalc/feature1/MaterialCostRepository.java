@@ -6,13 +6,16 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface MaterialCostRepository extends JpaRepository <MaterialCost, Long> {
+import javax.transaction.Transactional;
 
-    List<MaterialCost> findAllByYearMonthEquals(Integer yM);
+@Transactional
+public interface MaterialCostRepository extends CostBaseRepository<MaterialCost>/*JpaRepository <MaterialCost, Long> */{
 
-    @Query("select m.cost from MaterialCost m where m.yearMonth= :ym")
-    List<Float> findAllCost(@Param("ym") Integer ym);
-
-    @Query("select sum(m.cost) from MaterialCost m where m.yearMonth= :ym")
-    Float findAllCost2(@Param("ym") Integer ym);
+//    List<MaterialCost> findAllByYearMonthEquals(Integer yM);
+//
+//    @Query("select m.cost from MaterialCost m where m.yearMonth= :ym")
+//    List<Float> findAllCost(@Param("ym") Integer ym);
+//
+//    @Query("select sum(m.cost) from MaterialCost m where m.yearMonth= :ym")
+//    Float findAllCost2(@Param("ym") Integer ym);
 }

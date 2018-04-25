@@ -6,57 +6,30 @@ import com.elektronika.costcalc.corecomponents.Product;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "material_cost")
-public class MaterialCost {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+@DiscriminatorValue("materialCost")
+public class MaterialCost extends Cost {
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product productId;
 
-    @Column(nullable = false)
-    private Float cost;
+    private Float selfProducedMaterialCost;
 
-    @Column(nullable = false)
-    private Integer selfProducedMaterialCost;
-
-    @Column(nullable = false)
-    private Integer yearMonth;
+    public MaterialCost(Product productId, Float cost, Integer yearMonth, Float selfProducedMaterialCost) {
+        super(productId, cost, yearMonth);
+        this.selfProducedMaterialCost = selfProducedMaterialCost;
+    }
 
     public MaterialCost() {
     }
 
-    public MaterialCost(Product productId, Float cost, Integer selfProducedMaterialCost, Integer yearMonth) {
-        this.cost = cost;
-        this.selfProducedMaterialCost = selfProducedMaterialCost;
-        this.yearMonth = yearMonth;
-    }
 
-    public Float getCost() {
-        return cost;
-    }
-
-    public void setCost(Float cost) {
-        this.cost = cost;
-    }
-
-    public Integer getSelfProducedMaterialCost() {
+    public Float getSelfProducedMaterialCost() {
         return selfProducedMaterialCost;
     }
 
-    public void setSelfProducedMaterialCost(Integer selfProducedMaterialCost) {
+    public void setSelfProducedMaterialCost(Float selfProducedMaterialCost) {
         this.selfProducedMaterialCost = selfProducedMaterialCost;
     }
 
-    public Integer getYearMonth() {
-        return yearMonth;
-    }
 
-    public void setYearMonth(Integer yearMonth) {
-        this.yearMonth = yearMonth;
-    }
 }
 
 

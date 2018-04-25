@@ -7,19 +7,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CoreCostCalcService {
 
-
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private MaterialCostRepository materialCostRepository;
-
-    @Autowired
-    private LeaseWorkCostRepository leaseWorkCostRepository;
-
-    @Autowired
-    private WorkCostRepository workCostRepository;
-
+    private CostRepository costRepository;
 
     public Float placeholder(){
         Float returnValue;
@@ -32,7 +21,7 @@ public class CoreCostCalcService {
 //        leaseWorkCostRepository.findAllByYearMonthEquals(201801);
 //        workCostRepository.findAllByYearMonthEquals(201801);
 
-        materialCostRepository.findAllCost(201801);
+        costRepository.findAllCost(201801);
 
         return null;
     }

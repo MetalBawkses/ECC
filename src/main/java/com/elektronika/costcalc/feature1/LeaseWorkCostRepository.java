@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 
-public interface LeaseWorkCostRepository extends JpaRepository<LeaseWorkCost, Long> {
-    List<MaterialCost> findAllByYearMonthEquals(Integer yM);
+@Transactional
+public interface LeaseWorkCostRepository extends CostBaseRepository <LeaseWorkCost>/*JpaRepository<LeaseWorkCost, Long>*/ {
+//    List<MaterialCost> findAllByYearMonthEquals(Integer yM);
 }

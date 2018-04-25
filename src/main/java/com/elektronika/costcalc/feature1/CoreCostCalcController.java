@@ -11,11 +11,11 @@ import java.util.List;
 public class CoreCostCalcController {
 
     @Autowired
-    MaterialCostRepository materialCostRepository;
+    CostRepository costRepository;
 
     @GetMapping("/")
     public String index(Model model){
-        List<MaterialCost> result = materialCostRepository.findAllByYearMonthEquals(201801);
+        List<Cost> result = costRepository.findAllCost(201801);
 
         model.addAttribute("costList", result);
         return "index";
