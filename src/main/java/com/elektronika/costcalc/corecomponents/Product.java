@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "PRODUCT")
 public class Product {
 
     public Product(){}

@@ -1,5 +1,6 @@
 package com.elektronika.costcalc.model;
 
+import com.elektronika.costcalc.feature1.DevelopmentCost;
 import com.elektronika.costcalc.feature1.WorkCost;
 
 import javax.persistence.*;
@@ -23,6 +24,11 @@ public class Worker {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private List<WorkCost> workCosts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "worker",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<DevelopmentCost> developmentCosts = new ArrayList<>();
 
     @OneToMany(mappedBy = "worker",
             cascade = CascadeType.ALL,
@@ -62,15 +68,11 @@ public class Worker {
         return workCosts;
     }
 
-    public void setWorkCosts(List<WorkCost> workCosts) {
-        this.workCosts = workCosts;
-    }
-
     public List<WorkerMonthly> getWorkerMonthlies() {
         return workerMonthlies;
     }
 
-    public void setWorkerMonthlies(List<WorkerMonthly> workerMonthlies) {
-        this.workerMonthlies = workerMonthlies;
+    public List<DevelopmentCost> getDevelopmentCosts() {
+        return developmentCosts;
     }
 }

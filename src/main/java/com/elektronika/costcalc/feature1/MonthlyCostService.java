@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CoreCostCalcService {
+public class MonthlyCostService {
 
     @Autowired
     private CostRepository costRepository;
@@ -21,7 +21,6 @@ public class CoreCostCalcService {
 //        leaseWorkCostRepository.findAllByYearMonthEquals(201801);
 //        workCostRepository.findAllByYearMonthEquals(201801);
 
-        costRepository.findAllCost(201801);
 
         return null;
     }

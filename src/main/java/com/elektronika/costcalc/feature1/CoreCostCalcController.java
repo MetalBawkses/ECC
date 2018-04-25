@@ -15,9 +15,9 @@ public class CoreCostCalcController {
 
     @GetMapping("/")
     public String index(Model model){
-        List<Cost> result = costRepository.findAllCost(201801);
-
-        model.addAttribute("costList", result);
+//        List<Cost> result = costRepository.findAllCost(201801);
+//
+//        model.addAttribute("costList", result);
         return "index";
     }
 

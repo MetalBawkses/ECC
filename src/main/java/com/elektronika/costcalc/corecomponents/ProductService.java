@@ -12,12 +12,5 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-//    public List<WorkCost> findWorkCostbyProductId(Long id) {
-//        return productRepository.findOne(id).getWorkCosts();
-//    }
-
-//    public void saveProduct(Product entity) {
-//        productRepository.save(entity);
-//    }
 
 }

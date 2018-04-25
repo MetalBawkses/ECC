@@ -23,10 +23,18 @@ public class InitializerBean {
     @Autowired
     WorkerMonthlyRepository workerMonthlyRepository;
 
+    @Autowired
+    CodeTableRepository codeTableRepository;
+
     @PostConstruct
     public void init(){
+        CodeTable codeTable1 = new CodeTable();
+        codeTableRepository.save(codeTable1);
+
         Product product1 = new Product(123456, "prodName", 200);
         productRepository.save(product1);
+        Product product2 = new Product(223456, "prodName", 200);
+        productRepository.save(product2);
 
         Worker worker1 = new Worker("worker1", "div1");
         Worker worker2 = new Worker("worker2", "div1");
@@ -48,14 +56,14 @@ public class InitializerBean {
         workerMonthlyRepository.save(wm3);
         workerMonthlyRepository.save(wm4);
 
-        WorkCost wc1 = new WorkCost(product1, 123f, 201801, 77f, worker1, true);
-        WorkCost wc2 = new WorkCost(product1, 123f, 201801, 77f, worker1, true);
-        WorkCost wc3 = new WorkCost(product1, 123f, 201801, 77f, worker2, true);
-        WorkCost wc4 = new WorkCost(product1, 123f, 201801, 77f, worker2, true);
-        WorkCost wc5 = new WorkCost(product1, 123f, 201801, 77f, worker3, true);
-        WorkCost wc6 = new WorkCost(product1, 123f, 201801, 77f, worker3, true);
-        WorkCost wc7 = new WorkCost(product1, 123f, 201801, 77f, worker4, true);
-        WorkCost wc8 = new WorkCost(product1, 123f, 201801, 77f, worker4, true);
+        WorkCost wc1 = new WorkCost(product1, 1f, 201801, 77f, worker1, true);
+        WorkCost wc2 = new WorkCost(product1, 1f, 201801, 77f, worker1, true);
+        WorkCost wc3 = new WorkCost(product1, 1f, 201801, 77f, worker2, true);
+        WorkCost wc4 = new WorkCost(product1, 1f, 201801, 77f, worker2, true);
+        WorkCost wc5 = new WorkCost(product1, 1f, 201801, 77f, worker3, true);
+        WorkCost wc6 = new WorkCost(product1, 1f, 201801, 77f, worker3, true);
+        WorkCost wc7 = new WorkCost(product1, 1f, 201801, 77f, worker4, true);
+        WorkCost wc8 = new WorkCost(product1, 1f, 201801, 77f, worker4, true);
 
 
         costRepository.save(wc1);
@@ -68,14 +76,14 @@ public class InitializerBean {
         costRepository.save(wc8);
 
 
-        LeaseWorkCost l1 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l2 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l3 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l4 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l5 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l6 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l7 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
-        LeaseWorkCost l8 = new LeaseWorkCost(product1, 31f, 201801,"K1234", true);
+        LeaseWorkCost l1 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l2 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l3 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l4 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l5 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l6 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l7 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
+        LeaseWorkCost l8 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
 
 
         costRepository.save(l1);
@@ -87,14 +95,14 @@ public class InitializerBean {
         costRepository.save(l7);
         costRepository.save(l8);
 
-        MaterialCost m1 = new MaterialCost(product1,21f, 201801,0f , true);
-        MaterialCost m2 = new MaterialCost(product1,22f, 201801,0f , true);
-        MaterialCost m3 = new MaterialCost(product1,23f, 201803,0f , true);
-        MaterialCost m4 = new MaterialCost(product1,24f, 201801,0f , true);
-        MaterialCost m5 = new MaterialCost(product1,25f, 201804,0f , true);
-        MaterialCost m6 = new MaterialCost(product1,26f, 201807,0f , true);
-        MaterialCost m7 = new MaterialCost(product1,28f, 201801,0f , true);
-        MaterialCost m8 = new MaterialCost(product1,29f, 201803,0f , true);
+        MaterialCost m1 = new MaterialCost(product1,3f, 201801,0f , true);
+        MaterialCost m2 = new MaterialCost(product1,1f, 201801,0f , true);
+        MaterialCost m3 = new MaterialCost(product1,1f, 201803,0f , true);
+        MaterialCost m4 = new MaterialCost(product1,1f, 201801,0f , true);
+        MaterialCost m5 = new MaterialCost(product1,1f, 201804,0f , true);
+        MaterialCost m6 = new MaterialCost(product1,1f, 201807,0f , true);
+        MaterialCost m7 = new MaterialCost(product1,3f, 201801,0f , true);
+        MaterialCost m8 = new MaterialCost(product2,2f, 201803,0f , true);
 
 
         costRepository.save(m1);
@@ -106,9 +114,15 @@ public class InitializerBean {
         costRepository.save(m7);
         costRepository.save(m8);
 
-        List<Cost> lista = costRepository.findAllCost(201801);
-        System.out.println(lista.toString());
+        List<Cost> costs = costRepository.findCostByProductIdBetween(100000, 199999);
+        System.out.println("Size: " + costs.size());
+        for (Cost cost: costs) {
+            System.out.println("cost: " + cost.getCost());
+        }
 
+        System.out.println("count " + costRepository.countCostsByProductId(123456));
+
+        System.out.println("superquery " + costRepository.findCostByProductIdBetweenAndYearMonth(100000, 200000, 201801));
     }
 }
 
