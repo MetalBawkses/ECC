@@ -28,8 +28,20 @@ public class InitializerBean {
 
     @PostConstruct
     public void init(){
-        CodeTable codeTable1 = new CodeTable();
+        CodeTable codeTable1 = new CodeTable(100000, 199999, 711);
         codeTableRepository.save(codeTable1);
+        CodeTable codeTable2 = new CodeTable(330000, 339999, 711);
+        codeTableRepository.save(codeTable2);
+        CodeTable codeTable3 = new CodeTable(200000, 299999, 712);
+        codeTableRepository.save(codeTable3);
+        CodeTable codeTable4 = new CodeTable(400000, 499999, 713);
+        codeTableRepository.save(codeTable4);
+        CodeTable codeTable5 = new CodeTable(310000, 319999, 7612);
+        codeTableRepository.save(codeTable5);
+        CodeTable codeTable6 = new CodeTable(683300, 683399, 65312);
+        codeTableRepository.save(codeTable6);
+        CodeTable codeTable7 = new CodeTable(685000, 685099, 6533);
+        codeTableRepository.save(codeTable7);
 
         Product product1 = new Product(123456, "prodName", 200);
         productRepository.save(product1);

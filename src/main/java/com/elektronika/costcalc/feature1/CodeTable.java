@@ -10,6 +10,12 @@ public class CodeTable {
 
     public CodeTable(){}
 
+    public CodeTable(Integer leftEnd, Integer rightEnd, Integer ledgerNumber) {
+        this.leftEnd = leftEnd;
+        this.rightEnd = rightEnd;
+        this.ledgerNumber = ledgerNumber;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +25,8 @@ public class CodeTable {
     private Integer rightEnd;
 
     private Integer ledgerNumber;
+
+    private boolean directCost;
 
     public Integer getLeftEnd() {
         return leftEnd;
@@ -42,5 +50,13 @@ public class CodeTable {
 
     public void setLedgerNumber(Integer ledgerNumber) {
         this.ledgerNumber = ledgerNumber;
+    }
+
+    public boolean isDirectCost() {
+        return directCost;
+    }
+
+    public void setDirectCost(boolean directCost) {
+        this.directCost = directCost;
     }
 }
