@@ -6,11 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class CodeTable {
+public class LedgerNumber {
 
-    public CodeTable(){}
+    public LedgerNumber(){}
 
-    public CodeTable(Integer leftEnd, Integer rightEnd, Integer ledgerNumber) {
+    public LedgerNumber(Integer leftEnd, Integer rightEnd, Integer ledgerNumber) {
         this.leftEnd = leftEnd;
         this.rightEnd = rightEnd;
         this.ledgerNumber = ledgerNumber;

@@ -5,10 +5,10 @@
 </head>
 <body>
 
-<table th:object="${costList}" id="userTable" border="1">
-    <tr th:each="cost :${costList}">
-        <td  th:text="${cost.getCost()}"></td>
-        <td  th:text="${cost.getYearMonth()}"></td>
+<table th:object="${monthlyCosts}" id="userTable" border="1">
+    <tr th:each="cost :${monthlyCosts}">
+        <td  th:text="${cost.getKey()}"></td>
+        <td  th:text="${cost.getValue()}"></td>
     </tr>
 </table>
 

@@ -17,7 +17,6 @@ public class Cost {
     private Long id;
 
     @ManyToOne
-//    @JoinColumn(name = "id")
     private Product product;
 
     @Column(nullable = false)
@@ -66,5 +65,13 @@ public class Cost {
 
     public void setProduct(Product productId) {
         this.product = productId;
+    }
+
+    public boolean isDirectCost() {
+        return directCost;
+    }
+
+    public void setDirectCost(boolean directCost) {
+        this.directCost = directCost;
     }
 }

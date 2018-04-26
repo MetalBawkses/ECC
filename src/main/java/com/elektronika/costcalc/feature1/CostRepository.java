@@ -15,4 +15,8 @@ public interface CostRepository extends CostBaseRepository<Cost>{
     @Query("select sum(c.cost) from Cost c where c.product.id between :prodLeft and :prodRight and c.yearMonth = :ym")
     Float findCostByProductIdBetweenAndYearMonth(@Param("prodLeft") Integer prodLeft, @Param("prodRight") Integer prodRight, @Param("ym") Integer ym);
 
+
+    @Query("select sum(c.cost) from Cost c where TYPE(c) = MaterialCost ")
+    Float findCostsByType();
+
 }
