@@ -1,8 +1,6 @@
-package com.elektronika.costcalc.feature1;
+package com.elektronika.costcalc.model;
 
 
-
-import com.elektronika.costcalc.corecomponents.Product;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.elektronika.costcalc.index;
+package com.elektronika.costcalc.controller;
 
 
 import java.util.HashMap;

@@ -1,12 +1,10 @@
-package com.elektronika.costcalc.feature1;
-
-import com.elektronika.costcalc.corecomponents.Product;
+package com.elektronika.costcalc.model;
 
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("leaseWorkCost")
-public class LeaseWorkCost extends Cost{
+public class LeaseWorkCost extends Cost {
 
     private String billNumber;
 

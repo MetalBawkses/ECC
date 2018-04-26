@@ -1,7 +1,7 @@
-package com.elektronika.costcalc.corecomponents;
+package com.elektronika.costcalc.service;
 
-import com.elektronika.costcalc.feature1.*;
 import com.elektronika.costcalc.model.*;
+import com.elektronika.costcalc.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -122,7 +122,7 @@ public class InitializerBean {
         MaterialCost m4 = new MaterialCost(product5,1f, 201801,0f , true);
         MaterialCost m5 = new MaterialCost(product6,1f, 201801,0f , true);
         MaterialCost m6 = new MaterialCost(product7,1f, 201801,0f , true);
-        MaterialCost m7 = new MaterialCost(product1,100f, 201801,0f , true);
+        MaterialCost m7 = new MaterialCost(product1,1f, 201801,0f , true);
         MaterialCost m8 = new MaterialCost(product1,1f, 201801,0f , true);
 
 
@@ -135,17 +135,6 @@ public class InitializerBean {
         costRepository.save(m7);
         costRepository.save(m8);
 
-        /*List<Cost> costs = costRepository.findCostByProductIdBetween(100000, 199999);
-        System.out.println("Size: " + costs.size());
-        for (Cost cost: costs) {
-            System.out.println("cost: " + cost.getCost());
-        }
-
-        System.out.println("count " + costRepository.countCostsByProductId(123456));
-
-        System.out.println("superquery " + costRepository.findCostByProductIdBetweenAndYearMonth(100000, 200000, 201801));
-
-        System.out.println("codetable contents: " + codeTableRepository.findAll().size());*/
     }
 }
 

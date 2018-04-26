@@ -1,7 +1,7 @@
-package com.elektronika.costcalc.corecomponents;
+package com.elektronika.costcalc.model;
 
 
-import com.elektronika.costcalc.feature1.Cost;
+import com.elektronika.costcalc.model.Cost;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,7 +1,4 @@
-package com.elektronika.costcalc.feature1;
-
-import com.elektronika.costcalc.corecomponents.Product;
-import com.elektronika.costcalc.model.Worker;
+package com.elektronika.costcalc.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

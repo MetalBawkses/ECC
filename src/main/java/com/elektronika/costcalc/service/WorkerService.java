@@ -1,5 +1,7 @@
-package com.elektronika.costcalc.model;
+package com.elektronika.costcalc.service;
 
+import com.elektronika.costcalc.model.Worker;
+import com.elektronika.costcalc.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

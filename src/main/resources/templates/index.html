@@ -5,12 +5,23 @@
 </head>
 <body>
 
-<table th:object="${monthlyCosts}" id="userTable" border="1">
-    <tr th:each="cost :${monthlyCosts}">
-        <td  th:text="${cost.getKey()}"></td>
-        <td  th:text="${cost.getValue()}"></td>
+
+<table th:object="${finalTable}" id="userTable" border="1">
+    <tr>
+        <th>LedgerNumber</th>
+        <th>MatCost</th>
+        <th>WorkCost</th>
+        <th>LeaseWorkCost</th>
+    </tr>
+    <tr th:each="row :${finalTable}">
+        <td  th:text="${row.getKey()}"></td>
+        <td  th:text="${row.getValue().get(0)}"></td>
+        <td  th:text="${row.getValue().get(1)}"></td>
+        <td  th:text="${row.getValue().get(2)}"></td>
     </tr>
 </table>
+
+
 
 </body>
 </html>

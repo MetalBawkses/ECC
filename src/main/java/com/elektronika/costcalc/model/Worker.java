@@ -1,8 +1,5 @@
 package com.elektronika.costcalc.model;
 
-import com.elektronika.costcalc.feature1.DevelopmentCost;
-import com.elektronika.costcalc.feature1.WorkCost;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

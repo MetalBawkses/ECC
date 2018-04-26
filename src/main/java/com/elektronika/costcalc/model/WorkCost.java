@@ -1,13 +1,10 @@
-package com.elektronika.costcalc.feature1;
-
-import com.elektronika.costcalc.corecomponents.Product;
-import com.elektronika.costcalc.model.Worker;
+package com.elektronika.costcalc.model;
 
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("workCost")
-public class WorkCost extends Cost{
+public class WorkCost extends Cost {
 
     private Float hoursOfWork;
 

@@ -1,5 +1,7 @@
-package com.elektronika.costcalc.feature1;
+package com.elektronika.costcalc.repository;
 
+
+import com.elektronika.costcalc.model.WorkCost;
 
 import javax.transaction.Transactional;
 

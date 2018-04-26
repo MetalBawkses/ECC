@@ -1,10 +1,6 @@
-package com.elektronika.costcalc.feature1;
+package com.elektronika.costcalc.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
-import java.util.List;
+import com.elektronika.costcalc.model.MaterialCost;
 
 import javax.transaction.Transactional;
 

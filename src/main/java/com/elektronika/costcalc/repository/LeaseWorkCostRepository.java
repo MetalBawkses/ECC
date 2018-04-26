@@ -1,8 +1,6 @@
-package com.elektronika.costcalc.feature1;
+package com.elektronika.costcalc.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
+import com.elektronika.costcalc.model.LeaseWorkCost;
 
 import javax.transaction.Transactional;
 

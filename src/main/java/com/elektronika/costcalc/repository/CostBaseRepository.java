@@ -1,12 +1,8 @@
-package com.elektronika.costcalc.feature1;
+package com.elektronika.costcalc.repository;
 
-import org.springframework.data.jpa.repository.Query;
+import com.elektronika.costcalc.model.Cost;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.query.Param;
-
-
-import java.util.List;
 
 @NoRepositoryBean
 public interface CostBaseRepository<T extends Cost>
