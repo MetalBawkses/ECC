@@ -20,6 +20,21 @@ public class MonthlyCostService {
     @Autowired
     LedgerNumberRepository ledgerNumberRepository;
 
+    public HashMap dummyFunction(Integer yearMonth) {
+        List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
+        HashMap<Integer, Float> monthlyCostsByLedgerNumber = new HashMap<>();
+        for (LedgerNumber ledgerNumber : ledgerNumbers) {
+            Float valueForMonthlyCostsByLedgerNumber = costRepository.findMaterialCostByProductIdBetweenAndYearMonth(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
+            if (!monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber())) {
+                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), valueForMonthlyCostsByLedgerNumber);
+            } else {
+                float updatedValueForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()) + valueForMonthlyCostsByLedgerNumber;
+                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), updatedValueForMonthlyCostsByLedgerNumber);
+            }
+        }
+        return monthlyCostsByLedgerNumber;
+    }
+
 
     public HashMap calculateMaterialMonthlyCostsForLedgerNumbers(Integer yearMonth) {
         List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
@@ -80,11 +95,6 @@ public class MonthlyCostService {
             monthlyCostsByLedgerNumber.get(ledgerNumber).add(workCost.get(ledgerNumber));
             monthlyCostsByLedgerNumber.get(ledgerNumber).add(leaseWCost.get(ledgerNumber));
         }
-
-        for (Integer ledgerNumber: ledgerNumbers) {
-            System.out.println("ln: " + ledgerNumber + " cost: " + monthlyCostsByLedgerNumber.get(ledgerNumber).toString());
-        }
-
         return monthlyCostsByLedgerNumber;
     }
 
