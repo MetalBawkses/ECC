@@ -1,6 +1,7 @@
 package com.elektronika.costcalc.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 public class WorkerMonthly {
@@ -12,13 +13,13 @@ public class WorkerMonthly {
     private Worker worker;
 
     @Column(nullable = false)
-    private Float socialContribution;
+    private BigDecimal socialContribution;
 
     @Column(nullable = false)
     private Integer hourlyRate;
 
     @Column(nullable = false)
-    private Float vocationalTrainingContribution;
+    private BigDecimal vocationalTrainingContribution;
 
     @Column(nullable = false)
     private Integer yearMonth;
@@ -26,7 +27,7 @@ public class WorkerMonthly {
     public WorkerMonthly() {
     }
 
-    public WorkerMonthly(Worker worker, Float socialContribution, Float vocationalTrainingContribution, Integer yearMonth, Integer hourlyRate) {
+    public WorkerMonthly(Worker worker, BigDecimal socialContribution, BigDecimal vocationalTrainingContribution, Integer yearMonth, Integer hourlyRate) {
         this.worker = worker;
         this.socialContribution = socialContribution;
         this.vocationalTrainingContribution = vocationalTrainingContribution;
@@ -42,19 +43,19 @@ public class WorkerMonthly {
         this.worker = workerId;
     }
 
-    public Float getSocialContribution() {
+    public BigDecimal getSocialContribution() {
         return socialContribution;
     }
 
-    public void setSocialContribution(Float socialContribution) {
+    public void setSocialContribution(BigDecimal socialContribution) {
         this.socialContribution = socialContribution;
     }
 
-    public Float getVocationalTrainingContribution() {
+    public BigDecimal getVocationalTrainingContribution() {
         return vocationalTrainingContribution;
     }
 
-    public void setVocationalTrainingContribution(Float vocationalTrainingContribution) {
+    public void setVocationalTrainingContribution(BigDecimal vocationalTrainingContribution) {
         this.vocationalTrainingContribution = vocationalTrainingContribution;
     }
 

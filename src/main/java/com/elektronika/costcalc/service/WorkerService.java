@@ -11,7 +11,9 @@ public class WorkerService {
     @Autowired
     private WorkerRepository workerRepository;
 
-    public void saveWorker (Worker entity){
-        workerRepository.save(entity);
+    public void calculateWorkCost(){
+        /*
+        * hour
+        * workerId -> worker_monthly.hourlyRate*/
     }
 }

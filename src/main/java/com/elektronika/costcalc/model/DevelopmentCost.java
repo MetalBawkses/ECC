@@ -3,6 +3,7 @@ package com.elektronika.costcalc.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
 
 @Entity
 @DiscriminatorValue("developmentCost")
@@ -12,7 +13,7 @@ public class DevelopmentCost extends Cost {
     private Worker worker;
 
 
-    public DevelopmentCost(Product product, Float cost, Integer yearMonth, boolean directCost) {
+    public DevelopmentCost(Product product, BigDecimal cost, Integer yearMonth, boolean directCost) {
         super(product, cost, yearMonth, directCost);
     }
 

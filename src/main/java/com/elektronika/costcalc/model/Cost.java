@@ -3,6 +3,7 @@ package com.elektronika.costcalc.model;
 
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "cost")
@@ -18,7 +19,7 @@ public class Cost {
     private Product product;
 
     @Column(nullable = false)
-    private Float cost;
+    private BigDecimal cost;
 
     @Column(nullable = false)
     private Integer yearMonth;
@@ -26,7 +27,7 @@ public class Cost {
     @Column(nullable = false)
     private boolean directCost;
 
-    public Cost(Product product, Float cost, Integer yearMonth, boolean directCost) {
+    public Cost(Product product, BigDecimal cost, Integer yearMonth, boolean directCost) {
         this.product = product;
         this.cost = cost;
         this.yearMonth = yearMonth;
@@ -41,11 +42,11 @@ public class Cost {
         return id;
     }
 
-    public Float getCost() {
+    public BigDecimal getCost() {
         return cost;
     }
 
-    public void setCost(Float cost) {
+    public void setCost(BigDecimal cost) {
         this.cost = cost;
     }
 

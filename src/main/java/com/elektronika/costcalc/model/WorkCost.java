@@ -1,12 +1,13 @@
 package com.elektronika.costcalc.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @DiscriminatorValue("workCost")
 public class WorkCost extends Cost {
 
-    private Float hoursOfWork;
+    private BigDecimal hoursOfWork;
 
     @ManyToOne
     private Worker worker;
@@ -15,18 +16,18 @@ public class WorkCost extends Cost {
     public WorkCost() {
     }
 
-    public WorkCost(Product productId, Float cost, Integer yearMonth, Float hoursOfWork, Worker worker, boolean directCost){
+    public WorkCost(Product productId, BigDecimal cost, Integer yearMonth, BigDecimal hoursOfWork, Worker worker, boolean directCost){
         super(productId, cost, yearMonth, directCost);
         this.hoursOfWork = hoursOfWork;
         this.worker = worker;
     }
 
 
-    public Float getHoursOfWork() {
+    public BigDecimal getHoursOfWork() {
         return hoursOfWork;
     }
 
-    public void setHoursOfWork(Float hoursOfWork) {
+    public void setHoursOfWork(BigDecimal hoursOfWork) {
         this.hoursOfWork = hoursOfWork;
     }
 

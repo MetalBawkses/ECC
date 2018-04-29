@@ -9,7 +9,4 @@ import javax.transaction.Transactional;
 public interface WorkCostRepository extends CostBaseRepository<WorkCost>{
 
 }
-//public interface WorkCostRepository extends JpaRepository <WorkCost, Long> {
-//
-//    List<MaterialCost> findAllByYearMonthEquals(Integer yM);
-//}
+

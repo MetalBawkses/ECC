@@ -33,7 +33,7 @@ public class MonthlyCostController {
         costClassList.add(WorkCost.class);
         costClassList.add(LeaseWorkCost.class);
 
-        model.addAttribute("dummyTable",monthlyCostService.monthlyCostCalculator(201801, costClassList));
+        model.addAttribute("monthlyCostTable",monthlyCostService.monthlyCostCalculator(201801, costClassList));
 
         return "index";
     }

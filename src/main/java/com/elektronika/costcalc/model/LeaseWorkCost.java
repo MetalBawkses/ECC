@@ -1,6 +1,7 @@
 package com.elektronika.costcalc.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @DiscriminatorValue("leaseWorkCost")
@@ -8,7 +9,7 @@ public class LeaseWorkCost extends Cost {
 
     private String billNumber;
 
-    public LeaseWorkCost(Product productId, Float cost, Integer yearMonth, String billNumber, boolean directCost){
+    public LeaseWorkCost(Product productId, BigDecimal cost, Integer yearMonth, String billNumber, boolean directCost){
         super(productId, cost, yearMonth, directCost);
         this.billNumber = billNumber;
     }
