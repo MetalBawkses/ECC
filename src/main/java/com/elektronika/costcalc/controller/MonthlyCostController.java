@@ -1,5 +1,8 @@
 package com.elektronika.costcalc.controller;
 
+import com.elektronika.costcalc.model.LeaseWorkCost;
+import com.elektronika.costcalc.model.MaterialCost;
+import com.elektronika.costcalc.model.WorkCost;
 import com.elektronika.costcalc.repository.CostRepository;
 import com.elektronika.costcalc.repository.LedgerNumberRepository;
 import com.elektronika.costcalc.service.*;
@@ -7,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
 
 @Controller
 public class MonthlyCostController {
@@ -22,9 +27,13 @@ public class MonthlyCostController {
 
     @GetMapping("/")
     public String index(Model model){
+        ArrayList<Object> costClassList = new ArrayList<>();
 
-        monthlyCostService.mergeCostMaps();
-        model.addAttribute("finalTable", monthlyCostService.mergeCostMaps());
+        costClassList.add(MaterialCost.class);
+        costClassList.add(WorkCost.class);
+        costClassList.add(LeaseWorkCost.class);
+
+        model.addAttribute("dummyTable",monthlyCostService.monthlyCostCalculator(201801, costClassList));
 
         return "index";
     }

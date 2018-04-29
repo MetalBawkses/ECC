@@ -99,7 +99,7 @@ public class InitializerBean {
 
         LeaseWorkCost l1 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
         LeaseWorkCost l2 = new LeaseWorkCost(product2, 1f, 201801,"K1234", true);
-        LeaseWorkCost l3 = new LeaseWorkCost(product3, 1f, 201801,"K1234", true);
+        LeaseWorkCost l3 = new LeaseWorkCost(product3, 2f, 201801,"K1234", true);
         LeaseWorkCost l4 = new LeaseWorkCost(product4, 1f, 201801,"K1234", true);
         LeaseWorkCost l5 = new LeaseWorkCost(product1, 1f, 201801,"K1234", true);
         LeaseWorkCost l6 = new LeaseWorkCost(product5, 1f, 201801,"K1234", true);

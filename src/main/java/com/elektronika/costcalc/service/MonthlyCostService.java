@@ -20,83 +20,29 @@ public class MonthlyCostService {
     @Autowired
     LedgerNumberRepository ledgerNumberRepository;
 
-    public HashMap dummyFunction(Integer yearMonth) {
+
+    public HashMap monthlyCostCalculator(Integer yearMonth, List<Object> costClassList) {
         List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
-        HashMap<Integer, Float> monthlyCostsByLedgerNumber = new HashMap<>();
-        for (LedgerNumber ledgerNumber : ledgerNumbers) {
-            Float valueForMonthlyCostsByLedgerNumber = costRepository.findMaterialCostByProductIdBetweenAndYearMonth(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
-            if (!monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber())) {
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), valueForMonthlyCostsByLedgerNumber);
-            } else {
-                float updatedValueForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()) + valueForMonthlyCostsByLedgerNumber;
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), updatedValueForMonthlyCostsByLedgerNumber);
-            }
-        }
-        return monthlyCostsByLedgerNumber;
-    }
-
-
-    public HashMap calculateMaterialMonthlyCostsForLedgerNumbers(Integer yearMonth) {
-        List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
-        HashMap<Integer, Float> monthlyCostsByLedgerNumber = new HashMap<>();
-        for (LedgerNumber ledgerNumber : ledgerNumbers) {
-            Float valueForMonthlyCostsByLedgerNumber = costRepository.findMaterialCostByProductIdBetweenAndYearMonth(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
-            if (!monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber())) {
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), valueForMonthlyCostsByLedgerNumber);
-            } else {
-                float updatedValueForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()) + valueForMonthlyCostsByLedgerNumber;
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), updatedValueForMonthlyCostsByLedgerNumber);
-            }
-        }
-        return monthlyCostsByLedgerNumber;
-    }
-
-    public HashMap calculateWorkMonthlyCostsForLedgerNumbers(Integer yearMonth) {
-        List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
-        HashMap<Integer, Float> monthlyCostsByLedgerNumber = new HashMap<>();
-        for (LedgerNumber ledgerNumber : ledgerNumbers) {
-            Float valueForMonthlyCostsByLedgerNumber = costRepository.findWorkCostByProductIdBetweenAndYearMonth(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
-            if (!monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber())) {
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), valueForMonthlyCostsByLedgerNumber);
-            } else {
-                float updatedValueForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()) + valueForMonthlyCostsByLedgerNumber;
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), updatedValueForMonthlyCostsByLedgerNumber);
-            }
-        }
-        return monthlyCostsByLedgerNumber;
-    }
-
-    public HashMap calculateLeaseWorkMonthlyCostsForLedgerNumbers(Integer yearMonth) {
-        List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
-        HashMap<Integer, Float> monthlyCostsByLedgerNumber = new HashMap<>();
-        for (LedgerNumber ledgerNumber : ledgerNumbers) {
-            Float valueForMonthlyCostsByLedgerNumber = costRepository.findLeaseWorkCostByProductIdBetweenAndYearMonth(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
-            if (!monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber())) {
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), valueForMonthlyCostsByLedgerNumber);
-            } else {
-                float updatedValueForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()) + valueForMonthlyCostsByLedgerNumber;
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), updatedValueForMonthlyCostsByLedgerNumber);
-            }
-        }
-        return monthlyCostsByLedgerNumber;
-    }
-
-    public HashMap mergeCostMaps(){
-        Set<Integer> ledgerNumbers = ledgerNumberRepository.getLedgerNumberToSet();
         HashMap<Integer, ArrayList<Float>> monthlyCostsByLedgerNumber = new HashMap<>();
-
-        HashMap<Integer, Float> matCost = calculateMaterialMonthlyCostsForLedgerNumbers(201801);
-        HashMap<Integer, Float> workCost = calculateWorkMonthlyCostsForLedgerNumbers(201801);
-        HashMap<Integer, Float> leaseWCost = calculateLeaseWorkMonthlyCostsForLedgerNumbers(201801);
-
-        for (Integer ledgerNumber: ledgerNumbers) {
-            monthlyCostsByLedgerNumber.put(ledgerNumber, new ArrayList<>());
-            monthlyCostsByLedgerNumber.get(ledgerNumber).add(matCost.get(ledgerNumber));
-            monthlyCostsByLedgerNumber.get(ledgerNumber).add(workCost.get(ledgerNumber));
-            monthlyCostsByLedgerNumber.get(ledgerNumber).add(leaseWCost.get(ledgerNumber));
+        for (LedgerNumber ledgerNumber : ledgerNumbers) {
+            boolean ifLedgerNumberExistsInHashMap = monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber());
+            if (!ifLedgerNumberExistsInHashMap) {
+                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), new ArrayList<>());
+                for (Object costClass : costClassList) {
+                    Float valueForMonthlyCostsByLedgerNumber = costRepository.dummySearch2(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, costClass);
+                    monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).add(valueForMonthlyCostsByLedgerNumber);
+                }
+            } else {
+                int costCounter = 0;
+                for (Object costClass : costClassList) {
+                    float valueToUpdateForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).get(costCounter);
+                    float valueToAddForMonthlyCostsByLedgerNumber = costRepository.dummySearch2(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, costClass);
+                    monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).set(costCounter, valueToUpdateForMonthlyCostsByLedgerNumber + valueToAddForMonthlyCostsByLedgerNumber);
+                    costCounter += 1;
+                }
+            }
         }
         return monthlyCostsByLedgerNumber;
     }
-
 
 }
