@@ -10,17 +10,49 @@
     <tr>
         <th>LedgerNumber</th>
         <th>MatCost</th>
-        <th>WorkCost</th>
         <th>LeaseWorkCost</th>
+        <th>WorkCost</th>
+        <th>WorkCost extra</th>
+        <th>WorkCost socContr</th>
+        <th>WorkCost vocContr</th>
+
     </tr>
     <tr th:each="row :${monthlyCostTable}">
-        <td  th:text="${row.getKey()}"></td>
-        <td  th:text="${row.getValue().get(0)}"></td>
-        <td  th:text="${row.getValue().get(1)}"></td>
-        <td  th:text="${row.getValue().get(2)}"></td>
+        <td th:text="${row.getKey()}"></td>
+        <td th:text="${row.getValue().get(0)}"></td>
+        <td th:text="${row.getValue().get(1)}"></td>
+        <td th:text="${row.getValue().get(2)}"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
     </tr>
 </table>
 
+
+<table th:object="${newTable}" id="userTable" border="1">
+    <tr>
+        <th>LedgerNumber</th>
+        <th>MatCost</th>
+        <th>LeaseWorkCost</th>
+        <th>WorkCost</th>
+        <th>WorkCost extra</th>
+        <th>WorkCost socContr</th>
+        <th>WorkCost vocContr</th>
+
+    </tr>
+    <tr th:each="CostList :${newTable}">
+        <td th:text="${CostList.getValue().getLedgerNumber()}"></td>
+        <td th:text="${CostList.getValue().getMatCost()}"></td>
+        <td th:text="${CostList.getValue().getLeaseWorkCost()}"></td>
+        <td th:text="${CostList.getValue().getWorkCost()}"></td>
+        <td th:text="${CostList.getValue().getCostHolder().getSumOfWorkCostExtra()}"></td>
+        <td th:text="${CostList.getValue().getCostHolder().getsumOfSocialContributionCost()}"></td>
+        <td th:text="${CostList.getValue().getCostHolder().getSumOfVocationalContributionTrainingCost()}"></td>
+
+
+    </tr>
+</table>
 
 
 </body>

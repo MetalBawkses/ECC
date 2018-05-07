@@ -12,27 +12,37 @@ public class WorkerMonthly {
     @ManyToOne
     private Worker worker;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 25, scale = 10)
     private BigDecimal socialContribution;
 
     @Column(nullable = false)
     private Integer hourlyRate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 25, scale = 10)
     private BigDecimal vocationalTrainingContribution;
-
+    @Column(nullable = false, precision = 25, scale = 10)
+    private BigDecimal workCostExtra;
     @Column(nullable = false)
     private Integer yearMonth;
 
     public WorkerMonthly() {
     }
 
-    public WorkerMonthly(Worker worker, BigDecimal socialContribution, BigDecimal vocationalTrainingContribution, Integer yearMonth, Integer hourlyRate) {
+    public WorkerMonthly(Worker worker, BigDecimal socialContribution, BigDecimal vocationalTrainingContribution, Integer yearMonth, Integer hourlyRate, BigDecimal workCostExtra) {
         this.worker = worker;
         this.socialContribution = socialContribution;
         this.vocationalTrainingContribution = vocationalTrainingContribution;
         this.yearMonth = yearMonth;
         this.hourlyRate = hourlyRate;
+        this.workCostExtra = workCostExtra;
+    }
+
+    public BigDecimal getWorkCostExtra() {
+        return workCostExtra;
+    }
+
+    public void setWorkCostExtra(BigDecimal workCostExtra) {
+        this.workCostExtra = workCostExtra;
     }
 
     public Worker getWorker() {

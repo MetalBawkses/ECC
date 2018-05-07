@@ -30,11 +30,8 @@ public class Worker {
     @OneToMany(mappedBy = "worker",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<WorkerMonthly> workerMonthlies;
+    private List<WorkerMonthly> workerMonthlies = new ArrayList<>();
 
-    {
-        workerMonthlies = new ArrayList<>();
-    }
 
     public Worker() {
     }

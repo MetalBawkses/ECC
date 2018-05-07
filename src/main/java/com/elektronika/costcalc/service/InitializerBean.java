@@ -26,6 +26,9 @@ public class InitializerBean {
     @Autowired
     LedgerNumberRepository ledgerNumberRepository;
 
+    @Autowired
+    WorkCostService workCostService;
+
     @PostConstruct
     public void init(){
         LedgerNumber ledgerNumber1 = new LedgerNumber(100000, 199999, 711);
@@ -68,34 +71,44 @@ public class InitializerBean {
         workerRepository.save(worker3);
         workerRepository.save(worker4);
 
-        WorkerMonthly wm1 = new WorkerMonthly(worker1, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1150);
-        WorkerMonthly wm2 = new WorkerMonthly(worker2, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1250);
-        WorkerMonthly wm3 = new WorkerMonthly(worker3, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1350);
-        WorkerMonthly wm4 = new WorkerMonthly(worker4, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1450);
+        WorkerMonthly wm1 = new WorkerMonthly(worker1, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1150, BigDecimal.valueOf(0.21));
+        WorkerMonthly wm2 = new WorkerMonthly(worker2, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1250, BigDecimal.valueOf(0.21));
+        WorkerMonthly wm3 = new WorkerMonthly(worker3, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1350, BigDecimal.valueOf(0.21));
+        WorkerMonthly wm4 = new WorkerMonthly(worker4, BigDecimal.valueOf(0.27), BigDecimal.valueOf(0.015), 201801, 1450, BigDecimal.valueOf(0.21));
 
         workerMonthlyRepository.save(wm1);
         workerMonthlyRepository.save(wm2);
         workerMonthlyRepository.save(wm3);
         workerMonthlyRepository.save(wm4);
 
-        WorkCost wc1 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker1, true);
+/*        WorkCost wc1 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker1, true);
         WorkCost wc2 = new WorkCost(product2, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker1, true);
         WorkCost wc3 = new WorkCost(product3, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker2, true);
         WorkCost wc4 = new WorkCost(product4, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker2, true);
         WorkCost wc5 = new WorkCost(product5, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker3, true);
         WorkCost wc6 = new WorkCost(product6, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker3, true);
         WorkCost wc7 = new WorkCost(product7, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker4, true);
-        WorkCost wc8 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker4, true);
+        WorkCost wc8 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker4, true);*/
+
+        workCostService.createWorkCostByWorkSheet(product1, 201801, BigDecimal.valueOf(10), worker1, true);
+        workCostService.createWorkCostByWorkSheet(product2, 201801, BigDecimal.valueOf(20), worker1, true);
+        workCostService.createWorkCostByWorkSheet(product3, 201801, BigDecimal.valueOf(20), worker2, true);
+        workCostService.createWorkCostByWorkSheet(product4, 201801, BigDecimal.valueOf(30), worker2, true);
+        workCostService.createWorkCostByWorkSheet(product5, 201801, BigDecimal.valueOf(30), worker3, true);
+        workCostService.createWorkCostByWorkSheet(product6, 201801, BigDecimal.valueOf(40), worker3, true);
+        workCostService.createWorkCostByWorkSheet(product7, 201801, BigDecimal.valueOf(50), worker4, true);
+        workCostService.createWorkCostByWorkSheet(product4, 201801, BigDecimal.valueOf(40), worker4, true);
+        workCostService.createWorkCostByWorkSheet(product1, 201801, BigDecimal.valueOf(40), worker1, true);
 
 
-        costRepository.save(wc1);
+  /*      costRepository.save(wc1);
         costRepository.save(wc2);
         costRepository.save(wc3);
         costRepository.save(wc4);
         costRepository.save(wc5);
         costRepository.save(wc6);
         costRepository.save(wc7);
-        costRepository.save(wc8);
+        costRepository.save(wc8);*/
 
 
         LeaseWorkCost l1 = new LeaseWorkCost(product1, BigDecimal.valueOf(1), 201801,"K1234", true);

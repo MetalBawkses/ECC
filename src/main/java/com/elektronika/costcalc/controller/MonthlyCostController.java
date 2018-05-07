@@ -25,13 +25,18 @@ public class MonthlyCostController {
     @Autowired
     MonthlyCostService monthlyCostService;
 
+
     @GetMapping("/")
     public String index(Model model){
         ArrayList<Object> costClassList = new ArrayList<>();
 
         costClassList.add(MaterialCost.class);
-        costClassList.add(WorkCost.class);
         costClassList.add(LeaseWorkCost.class);
+        costClassList.add(WorkCost.class);
+
+
+
+        model.addAttribute("newTable", monthlyCostService.createMapOfCostList(201801));
 
         model.addAttribute("monthlyCostTable",monthlyCostService.monthlyCostCalculator(201801, costClassList));
 

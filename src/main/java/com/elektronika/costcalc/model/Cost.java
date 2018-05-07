@@ -18,8 +18,8 @@ public class Cost {
     @ManyToOne
     private Product product;
 
-    @Column(nullable = false)
-    private BigDecimal cost;
+    @Column(nullable = false, precision = 25, scale = 10)
+    protected BigDecimal cost;
 
     @Column(nullable = false)
     private Integer yearMonth;
