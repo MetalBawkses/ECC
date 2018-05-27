@@ -1,17 +1,16 @@
 package com.elektronika.costcalc.controller;
 
-import com.elektronika.costcalc.model.LeaseWorkCost;
-import com.elektronika.costcalc.model.MaterialCost;
-import com.elektronika.costcalc.model.WorkCost;
+
 import com.elektronika.costcalc.repository.CostRepository;
 import com.elektronika.costcalc.repository.LedgerNumberRepository;
 import com.elektronika.costcalc.service.*;
+import com.elektronika.costcalc.util.CostList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Controller
 public class MonthlyCostController {
@@ -28,18 +27,19 @@ public class MonthlyCostController {
 
     @GetMapping("/")
     public String index(Model model){
-        ArrayList<Object> costClassList = new ArrayList<>();
+        HashMap<Integer, CostList> mapForModel = monthlyCostService.createMapOfCostList(201801);
+        List<String> listOfLedgerNumbersString = new ArrayList<>();
+        List<Integer> listOfLedgerNumbersInt = new ArrayList<>();
+        for(Map.Entry<Integer, CostList> entry : mapForModel.entrySet()){
+            listOfLedgerNumbersString.add(entry.getKey().toString());
+        }
 
-        costClassList.add(MaterialCost.class);
-        costClassList.add(LeaseWorkCost.class);
-        costClassList.add(WorkCost.class);
-
-
-
-        model.addAttribute("newTable", monthlyCostService.createMapOfCostList(201801));
-
-        model.addAttribute("monthlyCostTable",monthlyCostService.monthlyCostCalculator(201801, costClassList));
-
+        Collections.sort(listOfLedgerNumbersString);
+        for (String number: listOfLedgerNumbersString) {
+            listOfLedgerNumbersInt.add(Integer.parseInt(number));
+        }
+            model.addAttribute("ledgerNumbersSorted", listOfLedgerNumbersInt);
+            model.addAttribute("mapForModel", mapForModel);
         return "index";
     }
 

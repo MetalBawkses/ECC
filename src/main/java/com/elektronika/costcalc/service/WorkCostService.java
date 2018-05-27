@@ -25,7 +25,10 @@ public class WorkCostService {
         return hoursOfWork.multiply(BigDecimal.valueOf(hourlyRate));
     }
 
-    private BigDecimal calculateWorkCostExtra(Worker worker, Integer yearMonth, BigDecimal workCostTotal){
+    private BigDecimal calculateWorkCostExtra(Worker worker, Integer yearMonth, BigDecimal workCostTotal, Boolean directCost){
+        if (!directCost){
+            return BigDecimal.ZERO;
+        }
         BigDecimal workCostExtraPercentage = workerMonthlyRepository.getAllByWorkerAndYearMonth(worker, yearMonth).getWorkCostExtra();
         return workCostTotal.multiply(workCostExtraPercentage);
     }
@@ -50,7 +53,7 @@ public class WorkCostService {
                 directCost,
                 calculateSocialContributionCost(worker,yearMonth,workCostTotal),
                 calculateVocationalTrainingContributionCost(worker,yearMonth,workCostTotal),
-                calculateWorkCostExtra(worker, yearMonth, workCostTotal) );
+                calculateWorkCostExtra(worker, yearMonth, workCostTotal, directCost) );
         workCostRepository.save(workCost);
 
     }

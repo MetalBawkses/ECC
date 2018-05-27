@@ -1,15 +1,17 @@
 package com.elektronika.costcalc.model;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import static com.elektronika.costcalc.util.BigDecimalUtil.scaleIfNotNull;
 
-public class CostHolder {
+public class WorkCostExtensions {
 
-    public CostHolder(BigDecimal sumOfWorkCostExtra, BigDecimal sumOfSocialContributionCost, BigDecimal sumOfVocationalContributionTrainingCost) {
-        this.sumOfWorkCostExtra = sumOfWorkCostExtra.setScale(2, RoundingMode.HALF_UP);
-        this.sumOfSocialContributionCost = sumOfSocialContributionCost.setScale(2, RoundingMode.HALF_UP);
-        this.sumOfVocationalContributionTrainingCost = sumOfVocationalContributionTrainingCost.setScale(2, RoundingMode.HALF_UP);
+    public WorkCostExtensions(BigDecimal sumOfWorkCostExtra, BigDecimal sumOfSocialContributionCost, BigDecimal sumOfVocationalContributionTrainingCost) {
+
+        this.sumOfWorkCostExtra = scaleIfNotNull(sumOfWorkCostExtra);
+        this.sumOfSocialContributionCost = scaleIfNotNull(sumOfSocialContributionCost);
+        this.sumOfVocationalContributionTrainingCost = scaleIfNotNull(sumOfVocationalContributionTrainingCost);
     }
+
 
     BigDecimal sumOfWorkCostExtra;
     BigDecimal sumOfSocialContributionCost;
@@ -30,15 +32,15 @@ public class CostHolder {
     public void updateExistingValues(BigDecimal sumOfWorkCostExtraNew,
                                      BigDecimal sumOfSocialContributionCostNew,
                                      BigDecimal sumOfVocationalContributionTrainingCostNew){
-        this.sumOfWorkCostExtra = sumOfWorkCostExtra.add(sumOfWorkCostExtraNew).setScale(2, RoundingMode.HALF_UP);
-        this.sumOfSocialContributionCost = sumOfSocialContributionCost.add(sumOfSocialContributionCostNew).setScale(2, RoundingMode.HALF_UP);
-        this.sumOfVocationalContributionTrainingCost = sumOfVocationalContributionTrainingCost.add(sumOfVocationalContributionTrainingCostNew).setScale(2, RoundingMode.HALF_UP);
+        this.sumOfWorkCostExtra = sumOfWorkCostExtra.add(scaleIfNotNull(sumOfWorkCostExtraNew));
+        this.sumOfSocialContributionCost = sumOfSocialContributionCost.add(scaleIfNotNull(sumOfSocialContributionCostNew));
+        this.sumOfVocationalContributionTrainingCost = sumOfVocationalContributionTrainingCost.add(scaleIfNotNull(sumOfVocationalContributionTrainingCostNew));
 
     }
 
     @Override
     public String toString() {
-        return "CostHolder{" +
+        return "WorkCostExtensions{" +
                 "sumOfWorkCostExtra=" + sumOfWorkCostExtra +
                 ", ketto=" + sumOfSocialContributionCost +
                 ", sumOfVocationalContributionTrainingCost=" + sumOfVocationalContributionTrainingCost +

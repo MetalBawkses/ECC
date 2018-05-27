@@ -7,6 +7,7 @@ import com.elektronika.costcalc.repository.WorkCostRepository;
 import com.elektronika.costcalc.util.CostList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static com.elektronika.costcalc.util.BigDecimalUtil.scaleIfNotNull;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -41,51 +42,27 @@ public class MonthlyCostService {
     private CostList fillCostList(LedgerNumber ledgerNumber, int yearMonth){
 
         int ledgerNumberForCostList = ledgerNumber.getLedgerNumber();
-        BigDecimal matCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, MaterialCost.class);
-        BigDecimal leaseWorkCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, LeaseWorkCost.class);
-        BigDecimal workCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, WorkCost.class);
-        CostHolder costHolder = workCostRepository.allMonthlyCost(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
+        BigDecimal matCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, MaterialCost.class, ledgerNumber.isDirectCost()));
+        BigDecimal leaseWorkCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, LeaseWorkCost.class, ledgerNumber.isDirectCost()));
+        BigDecimal workCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, WorkCost.class, ledgerNumber.isDirectCost()));
+        WorkCostExtensions workCostExtensions = workCostRepository.allMonthlyCost(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, ledgerNumber.isDirectCost());
 
         return new CostList(ledgerNumberForCostList,
                 matCost,
                 leaseWorkCost,
                 workCost,
-                costHolder);
+                workCostExtensions);
     }
 
     private CostList updateCostList(CostList costListToUpdate, int yearMonth, LedgerNumber ledgerNumber){
 
-        BigDecimal matCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, MaterialCost.class);
-        BigDecimal leaseWorkCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, LeaseWorkCost.class);
-        BigDecimal workCost = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, WorkCost.class);
-        CostHolder costHolder = workCostRepository.allMonthlyCost(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth);
+        BigDecimal matCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, MaterialCost.class, ledgerNumber.isDirectCost()));
+        BigDecimal leaseWorkCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, LeaseWorkCost.class, ledgerNumber.isDirectCost()));
+        BigDecimal workCost = scaleIfNotNull(costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, WorkCost.class, ledgerNumber.isDirectCost()));
+        WorkCostExtensions workCostExtensions = workCostRepository.allMonthlyCost(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, ledgerNumber.isDirectCost());
 
-        costListToUpdate.updateExistingValues(matCost, leaseWorkCost, workCost, costHolder);
+        costListToUpdate.updateExistingValues(matCost, leaseWorkCost, workCost, workCostExtensions);
         return costListToUpdate;
 
-    }
-
-    public HashMap monthlyCostCalculator(Integer yearMonth, List<Object> costClassList) {
-        List<LedgerNumber> ledgerNumbers = ledgerNumberRepository.findAll();
-        HashMap<Integer, ArrayList<BigDecimal>> monthlyCostsByLedgerNumber = new HashMap<>();
-        for (LedgerNumber ledgerNumber : ledgerNumbers) {
-            boolean ifLedgerNumberExistsInHashMap = monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber());
-            if (!ifLedgerNumberExistsInHashMap) {
-                monthlyCostsByLedgerNumber.put(ledgerNumber.getLedgerNumber(), new ArrayList<>());
-                for (Object costClass : costClassList) {
-                    BigDecimal valueForMonthlyCostsByLedgerNumber = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, costClass);
-                    monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).add(valueForMonthlyCostsByLedgerNumber);
-                }
-            } else {
-                int costCounter = 0;
-                for (Object costClass : costClassList) {
-                    BigDecimal valueToUpdateForMonthlyCostsByLedgerNumber = monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).get(costCounter);
-                    BigDecimal valueToAddForMonthlyCostsByLedgerNumber = costRepository.monthlyCostsByProdIdAndYearMonthAndCostType(ledgerNumber.getLeftEnd(), ledgerNumber.getRightEnd(), yearMonth, costClass);
-                    monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()).set(costCounter, valueToUpdateForMonthlyCostsByLedgerNumber.add(valueToAddForMonthlyCostsByLedgerNumber));
-                    costCounter += 1;
-                }
-            }
-        }
-        return monthlyCostsByLedgerNumber;
     }
 }

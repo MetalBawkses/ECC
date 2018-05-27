@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+     xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <title>Test</title>
 </head>
 <body>
 
 
-<table th:object="${monthlyCostTable}" id="userTable" border="1">
+
+
+<table th:object="${mapForModel}" id="userTable" border="1" class="table table-hover">
+    <thead class="thead-dark">
     <tr>
         <th>LedgerNumber</th>
         <th>MatCost</th>
@@ -15,45 +26,20 @@
         <th>WorkCost extra</th>
         <th>WorkCost socContr</th>
         <th>WorkCost vocContr</th>
-
     </tr>
-    <tr th:each="row :${monthlyCostTable}">
-        <td th:text="${row.getKey()}"></td>
-        <td th:text="${row.getValue().get(0)}"></td>
-        <td th:text="${row.getValue().get(1)}"></td>
-        <td th:text="${row.getValue().get(2)}"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-    </tr>
-</table>
-
-
-<table th:object="${newTable}" id="userTable" border="1">
-    <tr>
-        <th>LedgerNumber</th>
-        <th>MatCost</th>
-        <th>LeaseWorkCost</th>
-        <th>WorkCost</th>
-        <th>WorkCost extra</th>
-        <th>WorkCost socContr</th>
-        <th>WorkCost vocContr</th>
-
-    </tr>
-    <tr th:each="CostList :${newTable}">
-        <td th:text="${CostList.getValue().getLedgerNumber()}"></td>
-        <td th:text="${CostList.getValue().getMatCost()}"></td>
-        <td th:text="${CostList.getValue().getLeaseWorkCost()}"></td>
-        <td th:text="${CostList.getValue().getWorkCost()}"></td>
-        <td th:text="${CostList.getValue().getCostHolder().getSumOfWorkCostExtra()}"></td>
-        <td th:text="${CostList.getValue().getCostHolder().getsumOfSocialContributionCost()}"></td>
-        <td th:text="${CostList.getValue().getCostHolder().getSumOfVocationalContributionTrainingCost()}"></td>
+    </thead>
+    <tr th:each="key :${ledgerNumbersSorted}">
+        <td th:text="${mapForModel.get(key).getLedgerNumber()}"></td>
+        <td th:text="${mapForModel.get(key).getMatCost()}"></td>
+        <td th:text="${mapForModel.get(key).getLeaseWorkCost()}"></td>
+        <td th:text="${mapForModel.get(key).getWorkCost()}"></td>
+        <td th:text="${mapForModel.get(key).getWorkCostExtensions().getSumOfWorkCostExtra()}"></td>
+        <td th:text="${mapForModel.get(key).getWorkCostExtensions().getsumOfSocialContributionCost()}"></td>
+        <td th:text="${mapForModel.get(key).getWorkCostExtensions().getSumOfVocationalContributionTrainingCost()}"></td>
 
 
     </tr>
 </table>
-
 
 </body>
 </html>

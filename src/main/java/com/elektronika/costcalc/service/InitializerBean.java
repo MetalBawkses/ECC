@@ -31,20 +31,66 @@ public class InitializerBean {
 
     @PostConstruct
     public void init(){
+
         LedgerNumber ledgerNumber1 = new LedgerNumber(100000, 199999, 711);
+        ledgerNumber1.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber1);
+
         LedgerNumber ledgerNumber2 = new LedgerNumber(330000, 339999, 711);
+        ledgerNumber2.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber2);
+
         LedgerNumber ledgerNumber3 = new LedgerNumber(200000, 299999, 712);
+        ledgerNumber3.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber3);
+
         LedgerNumber ledgerNumber4 = new LedgerNumber(400000, 499999, 713);
+        ledgerNumber4.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber4);
+
         LedgerNumber ledgerNumber5 = new LedgerNumber(310000, 319999, 7612);
+        ledgerNumber5.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber5);
+
         LedgerNumber ledgerNumber6 = new LedgerNumber(683300, 683399, 65312);
+        ledgerNumber6.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber6);
+
         LedgerNumber ledgerNumber7 = new LedgerNumber(685000, 685099, 6533);
+        ledgerNumber7.setDirectCost(true);
         ledgerNumberRepository.save(ledgerNumber7);
+
+
+        LedgerNumber ledgerNumber8 = new LedgerNumber(660000, 660000, 6521);
+        ledgerNumber8.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber8);
+
+        LedgerNumber ledgerNumber9 = new LedgerNumber(683000, 683099, 6521);
+        ledgerNumber9.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber9);
+
+        LedgerNumber ledgerNumber10 = new LedgerNumber(631000, 631099, 6521);
+        ledgerNumber10.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber10);
+
+        LedgerNumber ledgerNumber11 = new LedgerNumber(610000, 610099, 6531);
+        ledgerNumber11.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber11);
+
+        LedgerNumber ledgerNumber12 = new LedgerNumber(653200, 653299, 6532);
+        ledgerNumber12.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber12);
+
+        LedgerNumber ledgerNumber13 = new LedgerNumber(683300, 683399, 6532);
+        ledgerNumber13.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber13);
+
+        LedgerNumber ledgerNumber14 = new LedgerNumber(999999, 999999, 6532);
+        ledgerNumber14.setDirectCost(false);
+        ledgerNumberRepository.save(ledgerNumber14);
+
+
+
 
         Product product1 = new Product(123456, "prodName1", 200);
         productRepository.save(product1);
@@ -60,6 +106,8 @@ public class InitializerBean {
         productRepository.save(product6);
         Product product7 = new Product(685000, "prodName6850", 200);
         productRepository.save(product7);
+        Product product8 = new Product(660000, "prodName6600", -1);
+        productRepository.save(product8);
 
         Worker worker1 = new Worker("worker1", "div1");
         Worker worker2 = new Worker("worker2", "div1");
@@ -81,14 +129,6 @@ public class InitializerBean {
         workerMonthlyRepository.save(wm3);
         workerMonthlyRepository.save(wm4);
 
-/*        WorkCost wc1 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker1, true);
-        WorkCost wc2 = new WorkCost(product2, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker1, true);
-        WorkCost wc3 = new WorkCost(product3, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker2, true);
-        WorkCost wc4 = new WorkCost(product4, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker2, true);
-        WorkCost wc5 = new WorkCost(product5, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker3, true);
-        WorkCost wc6 = new WorkCost(product6, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker3, true);
-        WorkCost wc7 = new WorkCost(product7, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker4, true);
-        WorkCost wc8 = new WorkCost(product1, BigDecimal.valueOf(1), 201801, BigDecimal.valueOf(77), worker4, true);*/
 
         workCostService.createWorkCostByWorkSheet(product1, 201801, BigDecimal.valueOf(10), worker1, true);
         workCostService.createWorkCostByWorkSheet(product2, 201801, BigDecimal.valueOf(20), worker1, true);
@@ -96,19 +136,11 @@ public class InitializerBean {
         workCostService.createWorkCostByWorkSheet(product4, 201801, BigDecimal.valueOf(30), worker2, true);
         workCostService.createWorkCostByWorkSheet(product5, 201801, BigDecimal.valueOf(30), worker3, true);
         workCostService.createWorkCostByWorkSheet(product6, 201801, BigDecimal.valueOf(40), worker3, true);
+        workCostService.createWorkCostByWorkSheet(product6, 201801, BigDecimal.valueOf(40), worker1, false);
         workCostService.createWorkCostByWorkSheet(product7, 201801, BigDecimal.valueOf(50), worker4, true);
         workCostService.createWorkCostByWorkSheet(product4, 201801, BigDecimal.valueOf(40), worker4, true);
         workCostService.createWorkCostByWorkSheet(product1, 201801, BigDecimal.valueOf(40), worker1, true);
-
-
-  /*      costRepository.save(wc1);
-        costRepository.save(wc2);
-        costRepository.save(wc3);
-        costRepository.save(wc4);
-        costRepository.save(wc5);
-        costRepository.save(wc6);
-        costRepository.save(wc7);
-        costRepository.save(wc8);*/
+        workCostService.createWorkCostByWorkSheet(product8, 201801, BigDecimal.valueOf(100), worker1, false);
 
 
         LeaseWorkCost l1 = new LeaseWorkCost(product1, BigDecimal.valueOf(1), 201801,"K1234", true);
@@ -119,6 +151,7 @@ public class InitializerBean {
         LeaseWorkCost l6 = new LeaseWorkCost(product5, BigDecimal.valueOf(1), 201801,"K1234", true);
         LeaseWorkCost l7 = new LeaseWorkCost(product6, BigDecimal.valueOf(1), 201801,"K1234", true);
         LeaseWorkCost l8 = new LeaseWorkCost(product7, BigDecimal.valueOf(1), 201801,"K1234", true);
+        LeaseWorkCost l9 = new LeaseWorkCost(product8, BigDecimal.valueOf(1), 201801,"K1234", false);
 
 
         costRepository.save(l1);
@@ -129,6 +162,7 @@ public class InitializerBean {
         costRepository.save(l6);
         costRepository.save(l7);
         costRepository.save(l8);
+        costRepository.save(l9);
 
         MaterialCost m1 = new MaterialCost(product2,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , true);
         MaterialCost m2 = new MaterialCost(product3,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , true);
@@ -138,6 +172,7 @@ public class InitializerBean {
         MaterialCost m6 = new MaterialCost(product7,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , true);
         MaterialCost m7 = new MaterialCost(product1,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , true);
         MaterialCost m8 = new MaterialCost(product1,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , true);
+        MaterialCost m9 = new MaterialCost(product8,BigDecimal.valueOf(1), 201801,BigDecimal.ZERO , false);
 
 
         costRepository.save(m1);
@@ -148,6 +183,7 @@ public class InitializerBean {
         costRepository.save(m6);
         costRepository.save(m7);
         costRepository.save(m8);
+        costRepository.save(m9);
 
     }
 }

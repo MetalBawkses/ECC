@@ -1,6 +1,7 @@
 package com.elektronika.costcalc.util;
 
-import com.elektronika.costcalc.model.CostHolder;
+import com.elektronika.costcalc.model.WorkCostExtensions;
+import static com.elektronika.costcalc.util.BigDecimalUtil.scaleIfNotNull;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,19 +12,19 @@ public class CostList {
     private BigDecimal matCost;
     private BigDecimal leaseWorkCost;
     private BigDecimal workCost;
-    private CostHolder costHolder;
+    private WorkCostExtensions workCostExtensions;
 
-    public CostList(int ledgerNumber, BigDecimal matCost, BigDecimal leaseWorkCost, BigDecimal workCost, CostHolder costHolder) {
+    public CostList(int ledgerNumber, BigDecimal matCost, BigDecimal leaseWorkCost, BigDecimal workCost, WorkCostExtensions workCostExtensions) {
         this.ledgerNumber = ledgerNumber;
-        this.matCost = matCost.setScale(2, RoundingMode.HALF_UP);
-        this.leaseWorkCost = leaseWorkCost.setScale(2, RoundingMode.HALF_UP);
-        this.workCost = workCost.setScale(2, RoundingMode.HALF_UP);
-        this.costHolder = costHolder;
+        this.matCost = scaleIfNotNull(matCost);
+        this.leaseWorkCost = scaleIfNotNull(leaseWorkCost);
+        this.workCost = scaleIfNotNull(workCost);
+        this.workCostExtensions = workCostExtensions;
 
     }
 
-    public CostHolder getCostHolder() {
-        return costHolder;
+    public WorkCostExtensions getWorkCostExtensions() {
+        return workCostExtensions;
     }
 
     public int getLedgerNumber() {
@@ -45,13 +46,14 @@ public class CostList {
     public void updateExistingValues(BigDecimal matCostNew,
                                      BigDecimal leaseWorkCostNew,
                                      BigDecimal workCostNew,
-                                     CostHolder costHolderNew){
-        this.matCost = matCost.add(matCostNew).setScale(2, RoundingMode.HALF_UP);
-        this.leaseWorkCost = leaseWorkCost.add(leaseWorkCostNew).setScale(2, RoundingMode.HALF_UP);
-        this.workCost = workCost.add(workCostNew).setScale(2, RoundingMode.HALF_UP);
-        costHolder.updateExistingValues(costHolderNew.getSumOfWorkCostExtra(),
-                costHolderNew.getsumOfSocialContributionCost(),
-                costHolderNew.getSumOfVocationalContributionTrainingCost());
+                                     WorkCostExtensions workCostExtensionsNew){
+
+        this.matCost = scaleIfNotNull(matCost.add(matCostNew));
+        this.leaseWorkCost = scaleIfNotNull(leaseWorkCost.add(leaseWorkCostNew));
+        this.workCost = scaleIfNotNull(workCost.add(workCostNew));
+        workCostExtensions.updateExistingValues(workCostExtensionsNew.getSumOfWorkCostExtra(),
+                workCostExtensionsNew.getsumOfSocialContributionCost(),
+                workCostExtensionsNew.getSumOfVocationalContributionTrainingCost());
     }
 
     @Override
@@ -61,7 +63,7 @@ public class CostList {
                 ", matCost=" + matCost +
                 ", leaseWorkCost=" + leaseWorkCost +
                 ", workCost=" + workCost +
-                ", costHolder=" + costHolder +
+                ", workCostExtensions=" + workCostExtensions +
                 '}';
     }
 }
