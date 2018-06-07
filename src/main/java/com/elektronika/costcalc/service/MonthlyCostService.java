@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static com.elektronika.costcalc.util.BigDecimalUtil.scaleIfNotNull;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
 @Service
-public class MonthlyCostService {
+public class MonthlyCostService{
 
     @Autowired
     private CostRepository costRepository;
@@ -24,9 +25,10 @@ public class MonthlyCostService {
     @Autowired
     LedgerNumberRepository ledgerNumberRepository;
 
-    public HashMap createMapOfCostList(int yearMonth){
+    public List createMapOfCostList(int yearMonth){
         List<LedgerNumber> ledgerNumbersList = ledgerNumberRepository.findAll();
         HashMap<Integer, CostList> monthlyCostsByLedgerNumber = new HashMap<>();
+        List<CostList> listForReturn = new ArrayList<>();
 
         for (LedgerNumber ledgerNumber : ledgerNumbersList){
             boolean ifLedgerNumberExistsInHashMap = monthlyCostsByLedgerNumber.containsKey(ledgerNumber.getLedgerNumber());
@@ -36,7 +38,15 @@ public class MonthlyCostService {
                 updateCostList(monthlyCostsByLedgerNumber.get(ledgerNumber.getLedgerNumber()), yearMonth, ledgerNumber);
             }
         }
-        return monthlyCostsByLedgerNumber;
+        List<Integer> keyList = new ArrayList<>(monthlyCostsByLedgerNumber.keySet());
+        System.out.println(keyList);
+        for (Integer key: keyList) {
+            listForReturn.add(monthlyCostsByLedgerNumber.get(key));
+        }
+
+        return listForReturn;
+
+
     }
 
     private CostList fillCostList(LedgerNumber ledgerNumber, int yearMonth){
